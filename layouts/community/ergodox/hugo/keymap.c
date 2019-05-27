@@ -1,8 +1,10 @@
-#include "ergodox.h"
+#include QMK_KEYBOARD_H
+
+// #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
-#include "version.h"
-#include "keymap_plover.h"
+// #include "version.h"
+// #include "keymap_plover.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -11,6 +13,7 @@
 #define PLVR 4 // steno type, through plover
 
 #define EPRM M(1) // Macro 1: Reset EEPROM
+// #define FORCE_NKRO
 
 #if 0
 	#define AGR_T(kc) MT(KC_RALT, kc)
@@ -44,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-[BASE] = KEYMAP(  // layer 0 : default
+[BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_EQL,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_LEFT,
         KC_TAB,         KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(PLVR/*SYMB*/),
@@ -86,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 // SYMBOLS
-[SYMB] = KEYMAP(
+[SYMB] = LAYOUT_ergodox(
        // left hand
        M(0),   KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
        KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_TRNS,
@@ -128,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 // MEDIA AND MOUSE
-[MDIA] = KEYMAP(
+[MDIA] = LAYOUT_ergodox(
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
@@ -147,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_WBAK
 ),
-[OWN] = KEYMAP(
+[OWN] = LAYOUT_ergodox(
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -166,32 +169,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS
 ),
-[PLVR] = KEYMAP(  // layout: layer 2: Steno for Plover
-        // left hand
-        KC_NO,  KC_NO,  KC_NO,  KC_NO,   KC_NO,  KC_NO,   KC_TRNS,
-        KC_NO,  PV_NUM, PV_NUM, PV_NUM,  PV_NUM, PV_NUM,  KC_TRNS,
-        KC_NO,  PV_LS,  PV_LT,  PV_LP,   PV_LH,  PV_STAR,
-        KC_NO,  PV_LS,  PV_LK,  PV_LW,   PV_LR,  PV_STAR, PV_STAR,
-        KC_TRNS,KC_NO,  KC_NO,  KC_TRNS, KC_TRNS,
-                                          KC_NO, KC_NO,
-                                                 KC_NO,
-                                   PV_A,  PV_O,  KC_NO,
-        // right hand
-          KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        PV_STAR,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,
-                 PV_STAR,   PV_RF,   PV_RP,   PV_RL,   PV_RT,   PV_RD,
-        PV_STAR, PV_STAR,   PV_RR,   PV_RB,   PV_RG,   PV_RS,   PV_RZ,
-                          KC_TRNS, KC_TRNS,   KC_NO,   KC_NO, KC_TRNS,
-        KC_NO,  KC_NO,
-        KC_NO,
-        KC_TRNS,PV_E,    PV_U
-)//,
+//[PLVR] = LAYOUT_ergodox(  // layout: layer 2: Steno for Plover
+//        // left hand
+//        KC_NO,  KC_NO,  KC_NO,  KC_NO,   KC_NO,  KC_NO,   KC_TRNS,
+//        KC_NO,  PV_NUM, PV_NUM, PV_NUM,  PV_NUM, PV_NUM,  KC_TRNS,
+//        KC_NO,  PV_LS,  PV_LT,  PV_LP,   PV_LH,  PV_STAR,
+//        KC_NO,  PV_LS,  PV_LK,  PV_LW,   PV_LR,  PV_STAR, PV_STAR,
+//        KC_TRNS,KC_NO,  KC_NO,  KC_TRNS, KC_TRNS,
+//                                          KC_NO, KC_NO,
+//                                                 KC_NO,
+//                                   PV_A,  PV_O,  KC_NO,
+//        // right hand
+//          KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+//        PV_STAR,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM,
+//                 PV_STAR,   PV_RF,   PV_RP,   PV_RL,   PV_RT,   PV_RD,
+//        PV_STAR, PV_STAR,   PV_RR,   PV_RB,   PV_RG,   PV_RS,   PV_RZ,
+//                          KC_TRNS, KC_TRNS,   KC_NO,   KC_NO, KC_TRNS,
+//        KC_NO,  KC_NO,
+//        KC_NO,
+//        KC_TRNS,PV_E,    PV_U
+//)//,
 };
 
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
 };
 
+#if 0
 void toggle_steno(int pressed) {
   uint8_t layer = biton32(layer_state);
   
@@ -213,6 +217,7 @@ void toggle_steno(int pressed) {
     unregister_code(PV_RG);
   }
 }
+#endif
 
 /*
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -234,6 +239,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 };
 */
 
+#if 0
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
   // MACRODOWN only works in this function
       switch(id) {
@@ -243,12 +249,13 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
       }
     return MACRO_NONE;
 };
+#endif
 
+#if 0
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
 
 };
-
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
@@ -276,3 +283,4 @@ void matrix_scan_user(void) {
     }
 
 };
+#endif

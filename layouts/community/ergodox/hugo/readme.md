@@ -14,9 +14,8 @@ This is what we ship with out of the factory. :) The image says it all:
 ## My notes
 To build and flash, from here, type:
 
-	cd ../..
-	make hugo
-	cd ../../.build
+	cd ../../../..
+	make ergodox_ez:hugo
 	teensy-loader-cli -mmcu=atmega32u4 -w ergodox_ez_hugo.hex
 
 And then just press the flash key on the keyboard.
