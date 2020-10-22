@@ -1,10 +1,14 @@
 #include QMK_KEYBOARD_H
 
+#undef DEBOUNCE
+#define DEBOUNCE 100
+
 // #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
 // #include "version.h"
 // #include "keymap_plover.h"
+
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
