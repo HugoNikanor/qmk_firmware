@@ -224,6 +224,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 void matrix_init_user(void) {
 
 };
+#endif
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
@@ -234,21 +235,22 @@ void matrix_scan_user(void) {
     ergodox_right_led_1_off();
     ergodox_right_led_2_off();
     ergodox_right_led_3_off();
+
     switch (layer) {
-      // TODO: Make this relevant to the ErgoDox EZ.
         case SYMB:
             ergodox_right_led_1_on();
             break;
         case MDIA:
             ergodox_right_led_2_on();
             break;
+			/*
 		case PLVR:
 			ergodox_right_led_3_on();
 			break;
+			*/
         default:
             // none
             break;
     }
 
 };
-#endif
